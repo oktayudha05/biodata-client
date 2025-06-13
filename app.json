@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "biodata-app",
+    "name": "Biodata Keluarga TIF Untidar",
     "slug": "biodata-app",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/himatif.png",
     "scheme": "biodataapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -12,11 +12,8 @@
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.oktayudha05.biodataapp"
     },
     "web": {
       "bundler": "metro",
@@ -28,7 +25,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
@@ -37,6 +34,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "6ec26698-7529-45f2-a82d-23a34934670a"
+      }
     }
   }
 }

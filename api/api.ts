@@ -2,7 +2,8 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const api = axios.create({
-  baseURL: 'http://192.168.1.32:3000/api',
+  baseURL: "https://biodata-api.oyudha.me/api",
+  // baseURL: "http://192.168.166.166:3014/api",
   withCredentials: true,
 });
 

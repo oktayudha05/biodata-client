@@ -17,30 +17,34 @@ const { width } = Dimensions.get('window');
 const CARD_WIDTH = Math.min(width * 0.9, 400);
 
 const Register = () => {
-  const [userType, setUserType] = useState<'mahasiswa' | 'dosen'>('mahasiswa');
-  const [error, setError] = useState('');
+  const [userType, setUserType] = useState<"mahasiswa" | "dosen">("mahasiswa");
+  const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
   const handleRegister = async (credentials: any) => {
+    const payload = {
+      ...credentials,
+      angkatan: Number(credentials.angkatan),
+    };
+    // console.log("Register payload:", payload);
     try {
-      const endpoint = userType === 'mahasiswa' ? '/mahasiswa' : '/dosen';
-      const response = await api.post(endpoint, credentials);
+      const endpoint = userType === "mahasiswa" ? "/mahasiswa" : "/dosen";
+      const response = await api.post(endpoint, payload);
 
       if (response.data) {
         setSuccess(true);
-        // Arahkan ke login setelah 2 detik
-        setTimeout(() => router.push('/auth/login'), 2000);
+        setTimeout(() => router.push("/auth/login"), 2000);
       }
     } catch (err) {
-      setError('Registrasi gagal. Silakan coba lagi.');
-      console.error('Register error:', err);
+      setError("Registrasi gagal. Silakan coba lagi.");
+      console.error("Register error:", err);
     }
   };
 
   return (
     <KeyboardAvoidingView
       style={styles.screenContainer}
-      behavior={Platform.select({ ios: 'padding', android: undefined })}
+      behavior={Platform.select({ ios: "padding", android: undefined })}
     >
       <View style={styles.cardContainer}>
         <Text style={styles.title}>Buat Akun Baru</Text>
@@ -57,14 +61,14 @@ const Register = () => {
               <TouchableOpacity
                 style={[
                   styles.toggleButton,
-                  userType === 'mahasiswa' && styles.toggleActive,
+                  userType === "mahasiswa" && styles.toggleActive,
                 ]}
-                onPress={() => setUserType('mahasiswa')}
+                onPress={() => setUserType("mahasiswa")}
               >
                 <Text
                   style={[
                     styles.toggleText,
-                    userType === 'mahasiswa' && styles.toggleTextActive,
+                    userType === "mahasiswa" && styles.toggleTextActive,
                   ]}
                 >
                   Mahasiswa
@@ -73,14 +77,14 @@ const Register = () => {
               <TouchableOpacity
                 style={[
                   styles.toggleButton,
-                  userType === 'dosen' && styles.toggleActive,
+                  userType === "dosen" && styles.toggleActive,
                 ]}
-                onPress={() => setUserType('dosen')}
+                onPress={() => setUserType("dosen")}
               >
                 <Text
                   style={[
                     styles.toggleText,
-                    userType === 'dosen' && styles.toggleTextActive,
+                    userType === "dosen" && styles.toggleTextActive,
                   ]}
                 >
                   Dosen
@@ -106,8 +110,8 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     backgroundColor: colors.darkBackground,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: 16,
   },
   cardContainer: {
@@ -116,44 +120,42 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 24,
     paddingHorizontal: 20,
-    // Bayangan (shadow) iOS
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.25,
     shadowRadius: 6,
-    // Elevation Android
     elevation: 6,
   },
   title: {
     fontSize: 26,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: colors.lightBlue,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 20,
   },
   toggleContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     backgroundColor: colors.lightBackground,
     borderRadius: 8,
-    overflow: 'hidden',
+    overflow: "hidden",
     marginBottom: 20,
   },
   toggleButton: {
     flex: 1,
     paddingVertical: 10,
-    alignItems: 'center',
-    backgroundColor: 'transparent',
+    alignItems: "center",
+    backgroundColor: "transparent",
   },
   toggleActive: {
     backgroundColor: colors.accentBlue,
   },
   toggleText: {
     fontSize: 16,
-    color: colors.textLight + 'CC', // teks agak redup jika belum aktif
-    fontWeight: '600',
+    color: colors.textLight + "CC",
+    fontWeight: "600",
   },
   toggleTextActive: {
-    color: '#fff',
+    color: "#fff",
   },
   successContainer: {
     backgroundColor: colors.successBackground,
@@ -164,12 +166,12 @@ const styles = StyleSheet.create({
   successText: {
     color: colors.successText,
     fontSize: 16,
-    textAlign: 'center',
+    textAlign: "center",
   },
   errorText: {
     color: colors.danger,
     marginTop: 12,
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 14,
   },
 });

@@ -16,12 +16,9 @@ const HomeTabScreen = () => {
       <View style={styles.card}>
         <Text style={styles.cardTitle}>Apa yang ingin Anda lakukan?</Text>
         <Text style={styles.cardText}>
-          • Lihat data {userType === "mahasiswa" ? "mahasiswa" : "dosen"} di tab{" "}
-          {userType === "mahasiswa" ? "Mahasiswa" : "Dosen"}
+          • Lihat data mahasiswa dan dosen di tab mahasiswa dan dosen
         </Text>
-        <Text style={styles.cardText}>
-          • Cari data spesifik dengan fitur pencarian
-        </Text>
+        <Text style={styles.cardText}>• Menghapus data pribadi anda</Text>
       </View>
     </View>
   );

@@ -33,8 +33,7 @@ const Login = () => {
       const endpoint =
         userType === 'mahasiswa' ? '/auth/login-mhs' : '/auth/login-dosen';
 
-      console.log('Attempting login to:', `${api.defaults.baseURL}${endpoint}`);
-      console.log('Credentials:', credentials);
+      console.log("Attempting login to:", `${api.defaults.baseURL}${endpoint}`);
 
       const response = await api.post(endpoint, credentials);
       console.log('Login response:', response.data);
